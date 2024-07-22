@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccbjut34hmvx0"]
+[gd_scene load_steps=5 format=3 uid="uid://ccbjut34hmvx0"]
 
 [ext_resource type="Texture2D" uid="uid://b5er8d1btq3bi" path="res://images/zombie/zombie.png" id="1_2p2lr"]
 [ext_resource type="Script" path="res://src/sprites/game_scene/zombie.gd" id="1_eirac"]
@@ -7,8 +7,12 @@
 radius = 11.0
 height = 46.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s65yx"]
+size = Vector2(21, 37)
+
 [node name="Zombie" type="CharacterBody2D"]
-collision_mask = 3
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_eirac")
 
 [node name="Zombie" type="Sprite2D" parent="."]
@@ -22,3 +26,16 @@ shape = SubResource("CapsuleShape2D_bf1xa")
 path_desired_distance = 34.9
 avoidance_enabled = true
 radius = 20.0
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="Area"]
+position = Vector2(12.5, 0.5)
+shape = SubResource("RectangleShape2D_s65yx")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="try_hit"]
+[connection signal="timeout" from="Timer" to="Timer" method="start"]

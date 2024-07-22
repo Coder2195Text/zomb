@@ -1,6 +1,6 @@
-extends CharacterBody2D
+class_name Zombie extends CharacterBody2D
 
-var movement_speed: float = 100.0
+var movement_speed: float = randf_range(80.0, 140.0);
 var movement_target_position: Vector2 = Vector2(60.0, 180.0);
 
 var duration = 0.0;
@@ -27,6 +27,7 @@ func set_movement_target(movement_target: Vector2):
   navigation_agent.target_position = movement_target
 
 func _physics_process(delta):
+  if !navigation_agent.is_node_ready(): return ;
   set_movement_target(get_tree().get_root().get_node("GameScene/Player").position);
   if navigation_agent.is_navigation_finished():
     return ;
@@ -40,4 +41,10 @@ func _physics_process(delta):
   rotation = lerp_angle(rotation, target_rot, 4 * delta);
 
   velocity = direction * movement_speed;
-  move_and_slide()
+  move_and_slide();
+
+func try_hit():
+  var hit = $Area.get_overlapping_bodies()
+  for body in hit:
+    if body is Player:
+      body.damage(5);
