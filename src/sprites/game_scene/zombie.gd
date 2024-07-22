@@ -3,6 +3,8 @@ extends CharacterBody2D
 var movement_speed: float = 100.0
 var movement_target_position: Vector2 = Vector2(60.0, 180.0);
 
+var duration = 0.0;
+
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 func _ready():
@@ -31,6 +33,11 @@ func _physics_process(delta):
 
   var current_agent_position: Vector2 = global_position
   var next_path_position: Vector2 = navigation_agent.get_next_path_position()
+  var direction = current_agent_position.direction_to(next_path_position);
 
-  velocity = current_agent_position.direction_to(next_path_position) * movement_speed
+  var target_rot = direction.angle();
+
+  rotation = lerp_angle(rotation, target_rot, 4 * delta);
+
+  velocity = direction * movement_speed;
   move_and_slide()

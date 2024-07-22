@@ -1,92 +1,79 @@
-[gd_scene load_steps=8 format=3 uid="uid://ce2l48n0x4gs3"]
+[gd_scene load_steps=7 format=3 uid="uid://ce2l48n0x4gs3"]
 
 [ext_resource type="PackedScene" uid="uid://hewsyrsjorjh" path="res://sprites/game_scene/player.tscn" id="1_7fx2t"]
 [ext_resource type="Script" path="res://src/scenes/game_scene.gd" id="1_770wg"]
 [ext_resource type="Texture2D" uid="uid://dxn33gagcudqg" path="res://icon.svg" id="3_cjb2d"]
-[ext_resource type="PackedScene" uid="uid://ccbjut34hmvx0" path="res://sprites/game_scene/zombie.tscn" id="4_cr0kw"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_haj8k"]
-vertices = PackedVector2Array(129, 38, 793, 503, -709, 398, 128, 38, -745, -387)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-756, -404, 135, 30, 829, 516, -719, 408)])
-source_geometry_mode = 1
-source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_caljr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_733h2"]
 size = Vector2(127.254, 128.058)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_haj8k"]
+vertices = PackedVector2Array(209, -185, 865, -523, 389, -35, 222, -96, 118, -33, 161, 71, 805, 492, 426, 239, 328, 132, 290, 125, 21, 122, 176, 261, -731, 574, -133, 211, -67, -31, -34, -125, 311, 375, -731, -381, -221, 58, 57, -277)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(2, 1, 6, 7, 8), PackedInt32Array(8, 7, 9), PackedInt32Array(5, 8, 9), PackedInt32Array(10, 5, 9, 11, 12, 13), PackedInt32Array(4, 5, 10, 14, 15), PackedInt32Array(16, 7, 6), PackedInt32Array(16, 6, 12), PackedInt32Array(11, 16, 12), PackedInt32Array(13, 12, 17, 18), PackedInt32Array(14, 18, 17, 15), PackedInt32Array(19, 15, 17), PackedInt32Array(19, 17, 1), PackedInt32Array(19, 1, 0)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-756, -404, 892, -551, 829, 516, -756, 601)])
+parsed_geometry_type = 1
+source_geometry_mode = 1
+source_geometry_group_name = &"walls"
+agent_radius = 25.0
+
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_770wg")
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_haj8k")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="NavigationRegion2D"]
-position = Vector2(300.906, 233.058)
+[node name="StaticBody2D2" type="StaticBody2D" parent="." groups=["walls"]]
+position = Vector2(300.906, 250)
 rotation = 0.698132
-scale = Vector2(1, 1)
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_caljr")
 
-[node name="Icon" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D2"]
+[node name="Icon" type="Sprite2D" parent="StaticBody2D2"]
 texture = ExtResource("3_cjb2d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(-0.126984, -0.0290108)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_733h2")
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationRegion2D/StaticBody2D2"]
-radius = 113.64
-vertices = PackedVector2Array(-61.8925, -63.0173, 65.2457, -63.9609, 64.6572, 64.4628, -63.8898, 65.2832)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D"]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["walls"]]
 position = Vector2(-100, 90)
 rotation = 1.0472
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_caljr")
 
-[node name="Icon" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D"]
+[node name="Icon" type="Sprite2D" parent="StaticBody2D"]
 texture = ExtResource("3_cjb2d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-0.126984, -0.0290108)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_733h2")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="NavigationRegion2D"]
+[node name="StaticBody2D3" type="StaticBody2D" parent="." groups=["walls"]]
 position = Vector2(87, -155)
 rotation = -2.60054
-scale = Vector2(1, 1)
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_caljr")
 
-[node name="Icon" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D3"]
+[node name="Icon" type="Sprite2D" parent="StaticBody2D3"]
 texture = ExtResource("3_cjb2d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 position = Vector2(-0.126984, -0.0290108)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_733h2")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="NavigationRegion2D"]
+[node name="StaticBody2D4" type="StaticBody2D" parent="." groups=["walls"]]
 position = Vector2(275, 18)
 rotation = 0.349066
-scale = Vector2(1, 1)
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_caljr")
 
-[node name="Icon" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D4"]
+[node name="Icon" type="Sprite2D" parent="StaticBody2D4"]
 texture = ExtResource("3_cjb2d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
 position = Vector2(-0.126984, -0.0290108)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_733h2")
 
-[node name="Player" parent="." instance=ExtResource("1_7fx2t")]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_haj8k")
 
-[node name="Zombie" parent="." instance=ExtResource("4_cr0kw")]
-position = Vector2(451, 322)
+[node name="Player" parent="." instance=ExtResource("1_7fx2t")]
