@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bf1xa"]
 radius = 11.0
-height = 46.0
+height = 40.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s65yx"]
 size = Vector2(21, 37)
@@ -36,6 +36,15 @@ shape = SubResource("RectangleShape2D_s65yx")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="Health" type="ProgressBar" parent="."]
+z_index = 100
+offset_left = -49.0
+offset_top = -52.0
+offset_right = 49.0
+offset_bottom = -28.0
+step = 2.08165e-12
+rounded = true
 
 [connection signal="timeout" from="Timer" to="." method="try_hit"]
 [connection signal="timeout" from="Timer" to="Timer" method="start"]

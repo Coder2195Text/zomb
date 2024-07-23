@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://hewsyrsjorjh" path="res://sprites/game_scene/player.tscn" id="1_7fx2t"]
 [ext_resource type="Script" path="res://src/scenes/game_scene.gd" id="1_770wg"]
 [ext_resource type="Texture2D" uid="uid://dxn33gagcudqg" path="res://icon.svg" id="3_cjb2d"]
-[ext_resource type="PackedScene" uid="uid://ccbjut34hmvx0" path="res://sprites/game_scene/zombie.tscn" id="4_cr0kw"]
+[ext_resource type="PackedScene" uid="uid://by1x50o2g8532" path="res://sprites/game_scene/gui.tscn" id="4_lbpxj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_caljr"]
 
@@ -11,13 +11,10 @@
 size = Vector2(127.254, 128.058)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_haj8k"]
-vertices = PackedVector2Array(389, -35, 1591, -1341, 1544, 960, 426, 239, 328, 132, 209, -185, 222, -96, 290, 125, 161, 71, 21, 122, 176, 261, -1029, 975, -133, 211, 118, -33, -998, -1278, 57, -277, -221, 58, -67, -31, -34, -125, 311, 375)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 0, 6), PackedInt32Array(4, 3, 7), PackedInt32Array(8, 4, 7), PackedInt32Array(9, 8, 7, 10, 11, 12), PackedInt32Array(13, 5, 6, 8), PackedInt32Array(14, 1, 0, 5), PackedInt32Array(14, 5, 15), PackedInt32Array(11, 14, 15, 16), PackedInt32Array(13, 8, 9, 17, 18), PackedInt32Array(19, 3, 2), PackedInt32Array(19, 2, 11), PackedInt32Array(10, 19, 11), PackedInt32Array(16, 12, 11), PackedInt32Array(16, 15, 18), PackedInt32Array(16, 18, 17)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1023, -1303, 1617, -1367, 1569, 985, -1055, 1001)])
 parsed_geometry_type = 1
 source_geometry_mode = 1
 source_geometry_group_name = &"walls"
-agent_radius = 25.0
+agent_radius = 21.0
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_770wg")
@@ -74,16 +71,9 @@ texture = ExtResource("3_cjb2d")
 position = Vector2(-0.126984, -0.0290108)
 shape = SubResource("RectangleShape2D_733h2")
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+[node name="NavRegion" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_haj8k")
 
 [node name="Player" parent="." instance=ExtResource("1_7fx2t")]
 
-[node name="Zombie" parent="." instance=ExtResource("4_cr0kw")]
-position = Vector2(724, 207)
-
-[node name="Zombie2" parent="." instance=ExtResource("4_cr0kw")]
-position = Vector2(-367, -51)
-
-[node name="Zombie3" parent="." instance=ExtResource("4_cr0kw")]
-position = Vector2(669, -351)
+[node name="GUI" parent="." instance=ExtResource("4_lbpxj")]

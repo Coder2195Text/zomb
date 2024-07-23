@@ -23,6 +23,11 @@ window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[gui]
+
+theme/custom="res://theme.tres"
+theme/custom_font="res://fonts/mightly_souly.ttf"
+
 [input]
 
 up={
