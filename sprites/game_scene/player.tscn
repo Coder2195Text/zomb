@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://hewsyrsjorjh"]
+[gd_scene load_steps=6 format=3 uid="uid://hewsyrsjorjh"]
 
 [ext_resource type="Script" path="res://src/sprites/game_scene/player.gd" id="1_k8wqu"]
 [ext_resource type="Texture2D" uid="uid://bdley7hklyhby" path="res://images/player/player_gun.png" id="2_s30jd"]
+[ext_resource type="AudioStream" uid="uid://h83db8stl205" path="res://sounds/effects/hurt.mp3" id="3_2ioc4"]
+[ext_resource type="AudioStream" uid="uid://igx6372r1v3w" path="res://sounds/effects/pistol.mp3" id="4_4jadq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nyj60"]
 radius = 11.0
@@ -23,3 +25,12 @@ shape = SubResource("CapsuleShape2D_nyj60")
 
 [node name="Camera" type="Camera2D" parent="."]
 z_as_relative = false
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2ioc4")
+max_polyphony = 10
+
+[node name="Pistol" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4jadq")
+volume_db = -25.0
+max_polyphony = 5

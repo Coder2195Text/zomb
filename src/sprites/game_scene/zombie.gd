@@ -51,8 +51,10 @@ func _physics_process(delta):
   $Health.rotation = -rotation;
 
 func damage(dmg: float):
+  $Hit.play();
   health -= dmg;
   if health <= 0:
+    DataTracker.zombies_killed += 1;
     queue_free();
 
 func try_hit():

@@ -14,14 +14,14 @@ func _physics_process(delta):
   var sprint = Input.get_action_strength("sprint") + 1.0;
   if stamina > 0&&sprint > 1.0:
     stamina -= delta * 10;
-  else:
+  elif sprint == 1.0:
     stamina += delta * 5;
-    sprint = 1.0;
 
   if stamina > 100:
     stamina = 100;
   
-  if stamina < 0:
+  if stamina <= 0:
+    sprint = 1.0;
     stamina = 0;
 
   (get_node("/root/GameScene/GUI") as GUI).set_stamina(stamina);
@@ -31,9 +31,15 @@ func _physics_process(delta):
   if Input.is_action_just_pressed("fire"):
     var bullet = Bullet.create(self, Vector2(17, 9));
     get_parent().add_child(bullet);
+    $Pistol.play();
+  
+  if health <= 0:
+    get_tree().change_scene_to_file("res://scenes/death_screen.tscn");
+    return ;
   
   move_and_slide();
 
 func damage(dmg: float):
   health -= dmg;
   (get_node("/root/GameScene/GUI") as GUI).set_health(health);
+  $Hurt.play();
