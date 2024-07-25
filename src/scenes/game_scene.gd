@@ -15,8 +15,9 @@ func _ready():
       add_child(grass);
 
   for i in range(0, 50):
-    var body = $StaticBody2D.duplicate();
-    body.position = Vector2(randf_range( - 2000, 2000), randf_range( - 2000, 2000));
+    var body = $StaticBody2D.duplicate() as StaticBody2D;
+    body.position = Vector2(randf_range( - 2500, 2500), randf_range( - 2500, 2500));
+    body.rotation = randf() * 2 * PI;
     add_child(body);
 
   regen_nav_map();
