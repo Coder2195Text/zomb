@@ -21,7 +21,7 @@ func _ready():
 
   regen_nav_map();
 
-  generate_zombies(15);
+  generate_zombies();
 
 func regen_nav_map():
   var map: NavigationRegion2D = $NavRegion;

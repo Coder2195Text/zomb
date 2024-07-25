@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://ce2l48n0x4gs3"]
+[gd_scene load_steps=9 format=3 uid="uid://ce2l48n0x4gs3"]
 
 [ext_resource type="PackedScene" uid="uid://hewsyrsjorjh" path="res://sprites/game_scene/player.tscn" id="1_7fx2t"]
 [ext_resource type="Script" path="res://src/scenes/game_scene.gd" id="1_770wg"]
 [ext_resource type="Texture2D" uid="uid://dxn33gagcudqg" path="res://icon.svg" id="3_cjb2d"]
 [ext_resource type="PackedScene" uid="uid://by1x50o2g8532" path="res://sprites/game_scene/gui.tscn" id="4_lbpxj"]
+[ext_resource type="AudioStream" uid="uid://7o5n2lut3es1" path="res://sounds/music/game.mp3" id="5_417xc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_caljr"]
 
@@ -83,5 +84,10 @@ navigation_polygon = SubResource("NavigationPolygon_haj8k")
 [node name="GUI" parent="." instance=ExtResource("4_lbpxj")]
 
 [node name="Zombies" type="Node2D" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_417xc")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="new_wave" from="." to="GUI" method="set_wave"]
